@@ -38,8 +38,8 @@ def fetch_posts():
 def index():
     fetch_posts()
     return render_template('index.html',
-                           title='Blockchain example: Decentralized '
-                                 'content sharing',
+                           title='Electronic Health Record (EHR) '
+                                 'with blockchain',
                            posts=posts,
                            node_address=CONNECTED_NODE_ADDRESS,
                            readable_time=timestamp_to_string)
@@ -52,9 +52,17 @@ def submit_textarea():
     """
     post_content = request.form["content"]
     author = request.form["author"]
+    patient_id = request.form["patient_id"]
+    birthdate = request.form["birthdate"]
+    diagnose = request.form["diagnose"]
+    medications = request.form["medications"]
 
     post_object = {
         'author': author,
+        'patient_id': patient_id,
+        'birthdate': birthdate,
+        'diagnose': diagnose,
+        'medications': medications,
         'content': post_content,
     }
 

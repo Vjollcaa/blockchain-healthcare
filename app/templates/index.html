@@ -6,9 +6,13 @@
 
 	
 	<form action="/submit" id="textform" method="post">
-		<input type="text" name="author" class="form-group" placeholder="Your name"><br><br>
+		<input type="text" name="author" class="form-group" placeholder="Patient name" required><br><br>
+		<input type="number" min="12" name="patient_id" class="form-group" placeholder="Patient ID" required><br><br>
+		<input type="date" name="birthdate" class="form-group" placeholder="Birthdate" required><br><br>
+		<input type="text" name="diagnose" class="form-group" placeholder="Diagnoses" required><br><br>
+		<input type="text" name="medications" class="form-group" placeholder="Medications"><br><br>
 	<center>
-	    <textarea name="content" class="textfield" rows="4" cols="50" placeholder="Just write whatever you want to..."></textarea>
+	    <textarea name="content" class="textfield" rows="4" cols="30" placeholder="Write any other details..."></textarea>
 		<br><br>
 	    <input type="submit" class="button btn-3" value="Post">
 	</form>
@@ -26,7 +30,11 @@
 	   <div class="post_box-header">
 	      <div class="post_box-options"><button class="option-btn">Reply</button></div>
 	      <div style="background: rgb(0, 97, 146) none repeat scroll 0% 0%; box-shadow: rgb(0, 97, 146) 0px 0px 0px 2px;" class="post_box-avatar">{{post.author[0]}}</div>
-	      <div class="name-header">{{post.author}}</div>
+		  <div class="name-header">{{post.author}}</div>
+		  <div class="name-header">{{post.patient_id}}</div>
+		  <div class="name-header">{{post.birthdate}}</div>
+		  <div class="name-header">{{post.diagnose}}</div>
+		  <div class="name-header">{{post.medications}}</div>
 	      <div class="post_box-subtitle"> Posted at <i>{{readable_time(post.timestamp)}}</i></div>
 	   </div>
 	   <div>
@@ -101,7 +109,7 @@
 		    height: 42px;
 		}
 		.textfield {
-	        width: 730px;
+	        width: 530px;
 			height:180px;
 			border:1px solid #4f7cc4;
 			border-left: 4px solid #4f7cc4;
@@ -112,7 +120,7 @@
 			padding: 10px;
 			border:1px solid #4f7cc4;
 			border-left: 4px solid #4f7cc4;
-			margin-left: 580px;
+			margin-left: 400px;
 			border-radius: 5px;
 			}
 		.button,
