@@ -1,0 +1,247 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+<style>
+  .post_box {
+    background: #fff;
+    padding: 12px 0px 0px 12px;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    border-top: 1px solid #f0f0f0;
+    border-radius: 10px;
+  }
+
+  .post_box-header {
+    padding-bottom: 12px;
+  }
+
+  .post_box-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    float: left;
+    margin-right: 16px;
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 0px 2px #f00;
+  }
+
+  .post_box-avatar::after {
+    content: "";
+    display: block;
+  }
+
+  .post_box-name {
+    font-weight: bold;
+  }
+
+  .post_box-subtitle {
+    color: #777;
+  }
+
+  .post_box-body {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    padding: 10px;
+  }
+
+  .post_box-options {
+    float: right;
+  }
+
+  .option-btn {
+    background: #f8f8f8;
+    border: none;
+    color: #2c3e50;
+    padding: 7px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 2px;
+    margin-right: 2px;
+    outline: none;
+    height: 42px;
+  }
+
+  .textfield {
+    width: 530px;
+    height: 180px;
+    border: 1px solid #3c8dbc;
+    border-left: 4px solid #3c8dbc;
+    border-radius: 5px;
+  }
+
+  .form-group {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #3c8dbc;
+    border-left: 4px solid #3c8dbc;
+    margin-left: 303px;
+    border-radius: 5px;
+  }
+
+  .button,
+  .button::after {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .button {
+    background: none;
+    border: 3px solid #fff;
+    border-radius: 5px;
+    color: #3c8dbc;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 1em auto;
+    padding: 0.5em 1em;
+    position: relative;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .button::before,
+  .button::after {
+    background: #fff;
+    content: '';
+    position: absolute;
+    z-index: -1;
+  }
+
+  .button:hover {
+    border: 3px solid #3c8dbc;
+  }
+
+  .btn-3::after {
+    height: 0;
+    left: 50%;
+    top: 50%;
+    width: 0;
+  }
+
+  .btn-3:hover:after {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+</style>
+
+{% if current_user.is_authenticated %}
+  <hr>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul>
+  {% for message in messages %}
+      <li>{{ message }} </li>
+  {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+  {% block content1 %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Register Patients 
+        <small>Electronic Health Record (EHR) with blockchain</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Custom</li>
+      </ol>
+    </section>
+
+    <section class="content">
+      <div class="row">
+        <!-- Left col -->
+        <section class="container">
+          <!--{% block content %}-->
+          <br>
+          <form action="/submit" id="textform" method="post">
+            <input type="text" name="author" class="form-group" placeholder="Patient name" required><br>
+            <input type="number" min="12" name="patient_id" class="form-group" placeholder="Patient ID" required><br>
+            <input type="date" name="birthdate" class="form-group" placeholder="Birthdate" required><br>
+            <input type="text" name="diagnose" class="form-group" placeholder="Diagnoses" required><br>
+            <input type="text" name="medications" class="form-group" placeholder="Medications"><br>
+            <center>
+              <textarea name="content" class="textfield" rows="4" cols="30"
+                placeholder="Write any other details..."></textarea>
+              <br><br>
+              <input type="submit" class="button btn-3" value="Post">
+            </center>
+          </form>
+          <br>
+
+          <a href="{{node_address}}/mine" target="_blank"><button class="button btn-3">Request to mine</button></a>
+          <a href="/admin/custom/"><button class="button btn-3">Resync</button></a>
+
+          <div style="margin: 30px;">
+
+          {% for post in posts %}
+          <div class="post_box">
+            <div class="post_box-header">
+              <div style="background: #3c8dbc none repeat scroll 0% 0%; box-shadow: #3c8dbc 0px 0px 0px 2px;" class="post_box-avatar">{{post.author[0]}}</div>
+              <div class="name-header">{{post.author}}</div>
+              <div class="name-header">{{post.patient_id}}</div>
+              <div class="name-header">{{post.birthdate}}</div>
+              <div class="name-header">{{post.diagnose}}</div>
+              <div class="name-header">{{post.medications}}</div>
+              <div class="post_box-subtitle"> Posted at <i>{{readable_time(post.timestamp)}}</i></div>
+            </div>
+            <div>
+              <div class="post_box-body">
+                <p>{{post.content}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </section>
+        <!-- /.Left col -->
+
+      </div>
+      <!-- /.row (main row) -->
+
+    </section>
+    <!-- /.content -->
+  {% endblock %}
+{% endblock %}
+{% else %}
+
+<center>
+  <section class="content" style="color: white">
+    <div class="col-sm-12">
+      <h1>Flask-Admin example</h1>
+      <p class="lead">
+        Authentication
+      </p>
+      <p>
+        This example shows how you can use Flask-Admin in an admin template, <br> here I used AdminLTE and <a href="https://pythonhosted.org/Flask-Security/index.html" target="_blank">Flask-Security</a> for authentication.
+      </p>
+      {% if not current_user.is_authenticated %}
+      <p>You can register as a regular user, or log in as a superuser with the following credentials: <br><br>
+
+        email: <b>admin</b> <br>
+        password: <b>admin</b> <br>
+        <br>
+        <p>
+          <a class="btn btn-primary" href="{{ url_for('security.login') }}">Login</a> <a class="btn btn-default" href="{{ url_for('security.register') }}">Register</a>
+        </p>
+        {% endif %}
+        <br>
+        <p>
+          <a class="btn btn-primary" href="/"><i class="glyphicon glyphicon-chevron-left"></i> Back</a>
+        </p>
+      </div>
+    </section>
+  </center>
+
+  <br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br>
+  {% endif %}
+
+{% endblock body %}
