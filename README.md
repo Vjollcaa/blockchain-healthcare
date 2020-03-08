@@ -1,6 +1,6 @@
-# Flask-Admin Dashboard Example
+# Electronic Health Record (EHR) with blockchain
 
-Basic dashboard app with Admin LTE template and Flask Admin, it has:
+Basic dashboard app with Admin LTE template and Flask Admin has:
 
 - User Registration
 - Login as general or admin user
@@ -23,21 +23,23 @@ Utilities:
 
 - Clone or download the git repository.
     ```sh
-    $ git clone https://github.com/jonalxh/Flask-Admin-Dashboard.git
+    $ git clone https://github.com/Vjollcaa/blockchain-healthcare.git
     ```
 - Create and activate a virtual environment:
     ```sh
     $ virtualenv venv
-    $ source venv/bin/activate
+    $ . . venv/bin/activate
     ```
 - Install the requirements inside the app folder
     ```sh
     $ pip install -r requirements.txt
     ```
-- Once the process finishes give execution permission to app.py file and run it
+- Run the application
+
+- On a different terminal session, start a blockchain node server
     ```sh
-    $ chmod +x app.py
-    $ ./app.py
+    $ set FLASK_APP=node_server.py
+    $ flask run --port 8000
     ```
 - The first execution will create automatically a sample sqlite database.
 - Open your favorite browser and type
@@ -46,16 +48,3 @@ Utilities:
     ```
     then just log in with the default user or register one. 
 
-### Screenshots
-![Index](screenshots/index.png)
-![Login](screenshots/login.png)
-![Register](screenshots/register.png)
-![Home](screenshots/home.png)
-![User](screenshots/user.png)
-![Edit](screenshots/edit.png)
-![Create](screenshots/create.png)
-![Skins and Layout](screenshots/skins.png)
-
-
-
-**I hope you enjoy it.**
