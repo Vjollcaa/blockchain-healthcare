@@ -150,6 +150,7 @@ def submit_textarea():
     post_content = request.form["content"]
     author = request.form["author"]
     patient_id = request.form["patient_id"]
+    gender = request.form["gender"]
     birthdate = request.form["birthdate"]
     diagnose = request.form["diagnose"]
     medications = request.form["medications"]
@@ -157,6 +158,7 @@ def submit_textarea():
     post_object = {
         'author': author,
         'patient_id': patient_id,
+        'patient_id': gender,
         'birthdate': birthdate,
         'diagnose': diagnose,
         'medications': medications,
