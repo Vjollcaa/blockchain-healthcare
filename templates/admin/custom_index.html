@@ -44,9 +44,10 @@
   }
 
   .post_box-body {
-    margin-top: 16px;
-    margin-bottom: 8px;
-    padding: 10px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 50px;
+    padding: 8px;
   }
 
   .post_box-options {
@@ -222,25 +223,24 @@
         <section class="container">
           <!--{% block content %}-->
           <br>
-          <form action="/submit" id="textform" method="post">
+          <form action="/submit" id="textform" method="post" enctype = "multipart/form-data">
             <input type="text" name="author" class="form-group" placeholder="Patient name" required><br>
             <input type="number" min="12" name="patient_id" class="form-group" placeholder="Patient ID" required>
             <div class="gender">
               <label>
-                <input type="radio" class="option-input radio" name="gender" checked />
+                <input type="radio" class="option-input radio" name="gender" value="Male"checked />
                 Male
               </label>&nbsp; &nbsp;
               <label>
-                <input type="radio" class="option-input radio" name="gender" />
+                <input type="radio" class="option-input radio" name="gender" value="Female" />
                 Female
               </label>
             </div><br>
             <input type="date" name="birthdate" class="form-group" placeholder="Birthdate" required><br>
             <input type="text" name="diagnose" class="form-group" placeholder="Diagnoses" required><br>
-            <input type="text" name="medications" class="form-group" placeholder="Medications"><br>
             <center>
-              <textarea name="content" class="textfield" rows="4" cols="30"
-                placeholder=" Allergies/Medication History"></textarea>
+              <textarea name="medications" class="textfield" rows="4" cols="30" placeholder="Medications"></textarea><br><br>
+              <textarea name="content" class="textfield" rows="4" cols="30" placeholder=" Allergies/Medication History"></textarea>
               <br><br>
               <input type="submit" class="button btn-3" value="Post">
             </center>
@@ -256,18 +256,16 @@
           <div class="post_box">
             <div class="post_box-header">
               <div style="background: #3c8dbc none repeat scroll 0% 0%; box-shadow: #3c8dbc 0px 0px 0px 2px;" class="post_box-avatar">{{post.author[0]}}</div>
-              <div class="name-header">{{post.author}}</div>
-              <div class="name-header">{{post.patient_id}}</div>
-              <div class="name-header">{{post.gender}}</div>
-              <div class="name-header">{{post.birthdate}}</div>
-              <div class="name-header">{{post.diagnose}}</div>
-              <div class="name-header">{{post.medications}}</div>
-              <div class="post_box-subtitle"> Posted at <i>{{readable_time(post.timestamp)}}</i></div>
+              <div style="font-size: 16px;" class="name-header"><b>Patient Name:</b> {{post.author}}</div>
+              <div class="post_box-subtitle"> Registered at <i>{{readable_time(post.timestamp)}}</i></div>
             </div>
             <div>
-              <div class="post_box-body">
-                <p>{{post.content}}</p>
-              </div>
+              <div class="post_box-body"><b>Patient ID:</b> {{post.patient_id}}</div>
+              <div class="post_box-body"><b>Gender:</b> {{post.gender}}</div>
+              <div class="post_box-body"><b>Birthday:</b> {{post.birthdate}}</div>
+              <div class="post_box-body"><b>Diagnose:</b> {{post.diagnose}}</div>
+              <div class="post_box-body"><b>Medications:</b> <p>{{post.medications}}</p></div>
+              <div class="post_box-body"><b>Allergies/Medication History:</b> <p>{{post.content}}</p></div>
             </div>
           </div>
           {% endfor %}

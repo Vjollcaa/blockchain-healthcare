@@ -16,7 +16,7 @@ class Block:
 
     def compute_hash(self):
         """
-        A function that return the hash of the block contents.
+        A function that returns the hash of the block contents.
         """
         block_string = json.dumps(self.__dict__, sort_keys=True)
         return sha256(block_string.encode()).hexdigest()

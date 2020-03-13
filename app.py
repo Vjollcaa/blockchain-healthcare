@@ -10,6 +10,7 @@ from flask_security import (RoleMixin, Security, SQLAlchemyUserDatastore,
                             UserMixin, current_user, login_required)
 from flask_security.utils import encrypt_password
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
 
 from app import app
 import datetime
@@ -17,7 +18,7 @@ import json
 
 import requests
 
-# Create Flask application
+# Create Flask application and initializing the DB
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
@@ -33,7 +34,7 @@ roles_users = db.Table(
 
 class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(80), unique=True)
+    name = db.Column(db.String(80), unique=True, nullable=False)
     description = db.Column(db.String(255))
 
     def __str__(self):
@@ -158,7 +159,7 @@ def submit_textarea():
     post_object = {
         'author': author,
         'patient_id': patient_id,
-        'patient_id': gender,
+        'gender': gender,
         'birthdate': birthdate,
         'diagnose': diagnose,
         'medications': medications,
