@@ -9,6 +9,8 @@ Basic dashboard app with Admin LTE template and Flask Admin has:
 - Inline editing enabled by default
 - Skins and  layout customization
 - Dashboard, charts, chat and calendar examples
+- Patient Registration
+- Storing Patient Data on Blockchain
  
 Utilities: 
 
@@ -28,7 +30,11 @@ Utilities:
 - Create and activate a virtual environment:
     ```sh
     $ virtualenv venv
-    $ . . venv/bin/activate
+    $ . .\venv\Scripts\activate.bat
+
+    or 
+
+    $ venv\Scripts\activate
     ```
 - Install the requirements inside the app folder
     ```sh
@@ -44,7 +50,7 @@ Utilities:
 - The first execution will create automatically a sample sqlite database.
 - Open your favorite browser and type
     ```
-    localhost:5000/admin
+    localhost:5000/
     ```
     then just log in with the default user or register one. 
 
