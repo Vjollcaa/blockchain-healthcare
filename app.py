@@ -149,17 +149,21 @@ def submit_textarea():
     Endpoint to create a new transaction via our application.
     """
     post_content = request.form["content"]
-    author = request.form["author"]
+    patient = request.form["patient"]
     patient_id = request.form["patient_id"]
     gender = request.form["gender"]
+    address = request.form["address"]
+    phone = request.form["phone"]
     birthdate = request.form["birthdate"]
     diagnose = request.form["diagnose"]
     medications = request.form["medications"]
 
     post_object = {
-        'author': author,
+        'patient': patient,
         'patient_id': patient_id,
         'gender': gender,
+        'address': address,
+        'phone': phone,
         'birthdate': birthdate,
         'diagnose': diagnose,
         'medications': medications,

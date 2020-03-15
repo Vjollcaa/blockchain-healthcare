@@ -150,7 +150,7 @@ peers = set()
 @app.route('/new_transaction', methods=['POST'])
 def new_transaction():
     tx_data = request.get_json()
-    required_fields = ["author", "content", "patient_id", "diagnose"]
+    required_fields = ["patient", "content", "patient_id", "diagnose"]
 
     for field in required_fields:
         if not tx_data.get(field):
