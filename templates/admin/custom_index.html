@@ -35,7 +35,7 @@
           <form action="/submit" id="textform" method="post" enctype = "multipart/form-data">
             <div class="form-group">
               <label for="patient" class="label1"><span>Patient Name<span class="required">*</span></span></label><br>
-              <input type="text" name="patient" id="patient" class="form-group fields" placeholder=" Enter name" required>&nbsp; &nbsp;
+              <input type="text" name="patient" id="patient" class="form-group fields" placeholder=" Enter name" required>&emsp;&emsp;
             </div>
             <div class="form-group">
               <label for="patient_id" class="label1"><span>Patient ID<span class="required">*</span></span></label><br>
@@ -53,15 +53,15 @@
             </div><br><br>
             <div class="form-group">
               <label for="address" class="label1"><span>Patient Address<span class="required">*</span></span></label><br>
-              <input type="text" min="12" name="address" id="address" class="form-group fields" placeholder=" Enter address" required>&nbsp; &nbsp;
+              <input type="text" min="12" name="address" id="address" class="form-group fields" placeholder=" Enter address" required>&emsp;&emsp;
             </div>
             <div class="form-group">
               <label for="phone" class="label1"><span>Phone Number<span class="required">*</span></span></label><br>
-              <input type="number" min="12" name="phone" id="phone" class="form-group fields" placeholder=" Enter ID" required>
+              <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" name="phone" id="phone" class="form-group fields" placeholder=" +1 (779) 999-845" required>
             </div><br>
             <div class="form-group">
               <label for="birthdate" class="label1"><span>Birthdate<span class="required">*</span></span></label><br>
-              <input type="date" name="birthdate" id="birthdate" class="form-group fields" placeholder=" Enter birthdate" required>&nbsp; &nbsp;
+              <input type="date" name="birthdate" id="birthdate" class="form-group fields" placeholder=" Enter birthdate" required>&emsp;&emsp;
             </div>
             <div class="form-group">
               <label for="diagnose" class="label1"><span>Diagnoses<span class="required">*</span></span></label><br>
@@ -86,14 +86,33 @@
               <div class="post_box-subtitle"> Registered at <i>{{readable_time(post.timestamp)}}</i></div>
             </div>
             <div>
-              <div class="post_box-body"><b>Patient ID:</b> {{post.patient_id}}</div>
-              <div class="post_box-body"><b>Gender:</b> {{post.gender}}</div>
-              <div class="post_box-body"><b>Address:</b> {{post.address}}</div>
-              <div class="post_box-body"><b>Phone Number:</b> {{post.phone}}</div>
-              <div class="post_box-body"><b>Birthday:</b> {{post.birthdate}}</div>
-              <div class="post_box-body"><b>Diagnose:</b> {{post.diagnose}}</div>
-              <div class="post_box-body"><b>Medications:</b> <p>{{post.medications}}</p></div>
-              <div class="post_box-body"><b>Allergies/Medication History:</b> <p>{{post.content}}</p></div>
+              <table class="table table-hover table-striped">
+                <thead class="thead-dark">
+                  <caption>Patient details</caption>
+                  <tr>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Birthday</th>
+                    <th scope="col">Diagnose</th>
+                    <th scope="col">Medications</th>
+                    <th scope="col">Allergies/Medication History</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{post.patient_id}}</td>
+                    <td>{{post.gender}}</td>
+                    <td>{{post.address}}</td>
+                    <td>{{post.phone}}</td>
+                    <td>{{post.birthdate}}</td>
+                    <td>{{post.diagnose}}</td>
+                    <td>{{post.medications}}</td>
+                    <td>{{post.content}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           {% endfor %}
