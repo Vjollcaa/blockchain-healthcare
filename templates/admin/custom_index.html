@@ -33,15 +33,15 @@
           <!--{% block content %}-->
           <br>
           <form action="/submit" id="textform" method="post" enctype = "multipart/form-data">
-            <div class="form-group">
+            <div class="form-group form1">
               <label for="patient" class="label1"><span>Patient Name<span class="required">*</span></span></label><br>
               <input type="text" name="patient" id="patient" class="form-group fields" placeholder=" Enter name" required>&emsp;&emsp;
             </div>
-            <div class="form-group">
+            <div class="form-group form1">
               <label for="patient_id" class="label1"><span>Patient ID<span class="required">*</span></span></label><br>
               <input type="number" min="12" name="patient_id" id="patient_id" class="form-group fields" placeholder=" Enter ID" required>
             </div><br>
-            <div class="form-group gender">
+            <div class="form-group form1 gender">
               <label>
                 <input type="radio" class="option-input radio" name="gender" value="Male"checked />
                 Male
@@ -51,19 +51,19 @@
                 Female
               </label>
             </div><br><br>
-            <div class="form-group">
+            <div class="form-group form1">
               <label for="address" class="label1"><span>Patient Address<span class="required">*</span></span></label><br>
               <input type="text" min="12" name="address" id="address" class="form-group fields" placeholder=" Enter address" required>&emsp;&emsp;
             </div>
-            <div class="form-group">
+            <div class="form-group form1">
               <label for="phone" class="label1"><span>Phone Number<span class="required">*</span></span></label><br>
               <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" name="phone" id="phone" class="form-group fields" placeholder=" +1 (779) 999-845" required>
             </div><br>
-            <div class="form-group">
+            <div class="form-group form1">
               <label for="birthdate" class="label1"><span>Birthdate<span class="required">*</span></span></label><br>
               <input type="date" name="birthdate" id="birthdate" class="form-group fields" placeholder=" Enter birthdate" required>&emsp;&emsp;
             </div>
-            <div class="form-group">
+            <div class="form-group form1">
               <label for="diagnose" class="label1"><span>Diagnoses<span class="required">*</span></span></label><br>
               <input type="text" name="diagnose" id="diagnose" class="form-group fields" placeholder=" Enter diagnoses" required>
             </div>
